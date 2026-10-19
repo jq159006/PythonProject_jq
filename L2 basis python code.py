@@ -150,3 +150,38 @@ if p or q:
     print('p or q is True')  # 条件成立，执行这一行
 else:
     print('p and q is False')
+
+#exercise1 编写一个函数（Function），用来检查给定的字符串是否是一个“有效的电子邮件地址”（valid e-mail address）
+
+def check_email(email):
+    # Check if the email contains exactly one @ / 检查是否恰好有一个@
+    parts = email.split('@')
+    if len(parts) != 2:
+        return False
+
+    # Check if the username is empty / 检查用户名是否为空
+    if len(parts[0]) == 0:
+        return False
+
+    # Check if the domain contains a dot / 检查域名是否包含点
+    domain = parts[1]
+    if domain.find('.') == -1:
+        return False
+
+    # Check if the domain parts are empty / 检查域名各部分是否为空
+    domain_parts = domain.split('.')
+    for part in domain_parts:
+        if len(part) == 0:
+            return False
+
+    # Check if the email contains spaces / 检查是否包含空格
+    if email.find(' ') != -1:
+        return False
+
+    return True
+
+# Test the function / 测试函数
+print(check_email('student@gmail.com'))
+print(check_email('studentgmail.com'))
+print(check_email('student@.com'))
+print(check_email('student@@gmail.com'))
