@@ -1,3 +1,4 @@
+# region 1. Introduction
 import sys
 
 print('hello world')
@@ -5,7 +6,9 @@ print('hello world')
 # end - 不换行输出
 print('2nd line', end=' ')
 print('continue 2nd line')
+# endregion
 
+# region 2. 字符串格式
 # 1）字符串格式化
 a=35
 b=35
@@ -26,13 +29,15 @@ f = d + e
 print(f'f={f}')
 print(f'type_f = {type(f)}')
 print('f={}'.format(f)) #"{}".format(value),
+# endregion
 
-# 看有多少位数字
+# region 3.看有多少位数字
 s_d = str(d)
 num_digits_d = len(s_d)
 print(f'num_digits_d={num_digits_d}')
+# endregion
 
-# float example
+# region 4.float example
 f_d = 4161619559743735214926379646432749649142749646472546919642476461.0
 f_e = 5659228963731945742691643461942541966212415748411698769986258256.0
 print(f'f_d={f_d}')
@@ -41,26 +46,30 @@ print(f'type(f_d)={type(f_d)}')
 print(f'type(f_e)={type(f_e)}')
 f_f = f_d + f_e
 print(f'f_f={f_f}')
+# endregion
 
-# 科学计数法 e 表示“乘以 10 的多少次方”。
+# region 5.科学计数法 e 表示“乘以 10 的多少次方”。
 # 1.52e-2 =1.52×10^-2= 1.52×0.01
 g = 1.52e-2
 print(f'g={g}')
+# endregion
 
-# 浮点数的极限与溢出，当超出极限时，就会得到inf（infinity，无穷大），不会报错
+# region 6.浮点数的极限与溢出，当超出极限时，就会得到inf（infinity，无穷大），不会报错
 max_f = 1.8e308 #1.8*10^308
 print(f'max_f={max_f}')
 
 print(sys.float_info) #查询浮点数的信息
+# endregion
 
-# 二进制 binary system
+# region 7.二进制 binary system
 b_b = 0b1011
 print(f'b_b={b_b}')
 # 十六进制 hexadecimal
 h_c = 0x1f
 print(f'h_c={h_c}')
+# endregion
 
-# round() 保留小数
+# region 8.round() 保留小数
 a = 1.9835
 b = round(a,2)
 print(f'a={a}')
@@ -70,8 +79,9 @@ f = 10
 g = 4
 r = f % g
 print(f'r = {r}')
+# endregion
 
-# list列表、数组
+# region 9.list列表、数组
 arr_a = [3, 5, 7, 9]
 print(f'arr_a = {arr_a}')
 print(f'3rd elem = {arr_a[2]}')
@@ -94,18 +104,23 @@ print(f's_2[-1:] = {s_1[-1:]}') #最后一个字符
 #合并 aggregation
 s_3 = s_1 + s_2
 print(f's_3 = {s_3}')
+# endregion
 
-# 换行\n
+# region 10. 换行\n
 print('\nabgg\ngrhren')
 print(r'\nabgg\ngrhren') #r 代表 raw string，意思是“原始字符串”
+# endregion
 
+# region 11. ord/chr
 # ord()：把字符转换成对应的数字编码. 根据ASCII代码表
 c_a = ord('a')
 print(f'c_a = {c_a}')
 # chr()：把数字编码转换成对应的字符。根据ASCII代码表
 c_b = chr(98)
 print(f'c_b = {c_b}')
+# endregion
 
+#region 12. find
 s_5 = 'abcdefgabcdefg'
 i_abc = s_5.find('bc') #find 从左往右找第一个
 print(f'i_abc = {i_abc}')
@@ -116,8 +131,9 @@ i_abc = s_5.index('bc')
 print(f'i_abc = {i_abc}')
 i_abc = s_5.rindex('bc')
 print(f'i_abc = {i_abc}')
+# endregion
 
-#字符串的 split() ：按指定分隔符把字符串拆成一个列表。
+#region 13.字符串的 split() ：按指定分隔符把字符串拆成一个列表。
 s_6 = '1445;2553;3647'
 arr_s6 = s_6.split(';')
 print(f'arr_s6 = {arr_s6}')
@@ -125,8 +141,9 @@ print(f'arr_s6 = {arr_s6}')
 s_7 = '    sgsbg  '
 s_8 = s_7.split()
 print(f's_8 = {s_8}')
+# endregion
 
-# 初始化布尔bool变量
+# region 14.初始化布尔bool变量
 p = True
 q = False
 print(f'type_pq: {type(p)}')
@@ -150,9 +167,10 @@ if p or q:
     print('p or q is True')  # 条件成立，执行这一行
 else:
     print('p and q is False')
+# endregion
 
-#exercise1 编写一个函数（Function），用来检查给定的字符串是否是一个“有效的电子邮件地址”（valid e-mail address）
-
+#region exercise1
+# 编写一个函数（Function），用来检查给定的字符串是否是一个“有效的电子邮件地址”（valid e-mail address）
 def check_email(email):
     # Check if the email contains exactly one @ / 检查是否恰好有一个@
     parts = email.split('@')
@@ -185,3 +203,4 @@ print(check_email('student@gmail.com'))
 print(check_email('studentgmail.com'))
 print(check_email('student@.com'))
 print(check_email('student@@gmail.com'))
+# endregion
