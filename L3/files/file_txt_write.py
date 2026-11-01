@@ -1,6 +1,6 @@
 # region 8.writing a file⭐️
 import os
-my_file = os.path.join('../data', 'fileout.txt')
+my_file = os.path.join('../../data', 'fileout.txt')
 
 f = open(my_file, 'w')  # Open the file in write mode 以写入模式打开文件
 f.write('Hello World\n')
