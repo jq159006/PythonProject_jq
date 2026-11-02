@@ -9,7 +9,7 @@ n = 5 - number of rows
 
 compute how many bowls we need given n
 """
-# region solution1. for loop
+# region solution1. for loop - 根据指定的序列或范围循环
 def compute_bowls(n):
     total = 0  # Initialize the total 初始化总数
     for i in range(1, n + 1):
@@ -19,7 +19,7 @@ n=5
 print(f'compute_boals: {compute_bowls(n)}')
 # endregion
 
-# region solution2. while loop
+# region solution2. while loop - 只要条件成立就继续循环
 def count_bowls(n):  # Define a function 定义计算碗数量的函数
     i = 1  # Initialize the counter 初始化计数器
     bowls = 0  # Initialize the total number of bowls 初始化碗的总数
@@ -34,25 +34,28 @@ n = 5
 print(f'count_bowls({n})={count_bowls(5)}')
 # endregion
 
-# region recurse 递归  --- 报错
+# region solution3. recurse 递归  --- 报错
+# recurse: 就是一个 Function 在自己内部再次调用自己。
 def count_bowls_recurse(n):  # Define a recursive function 定义递归函数
-    if n == 1:  # Check the stopping condition 检查递归停止条件
-        return 1  # Return 1 and stop recursion 返回1并停止递归
+    if n == 1:  # Check the stopping condition 检查停止条件
+        return 1  # Return 1 for the first row 第一排只有1个球
     else:
-        return n + count_bowls_recurse(n - 1)  # Call the function itself with n-1 用n-1再次调用自身
+        return n + count_bowls_recurse(n - 1)  # Add the current row to previous rows 当前排加上之前所有排的球数
+print(count_bowls_recurse(5))  # Calculate for 5 rows 计算5排的总球数
 
-result = count_bowls_recurse(5)  # Call the function with n=5 传入5调用函数
-print(result)
+# endregion
 
-n = 5
-print(f'count_bowls({n})={count_bowls(5)}')
-print(f'count_pins({n})={count_pins(5)}')
+# region solution4. 数学方式
+def count_bowls_sequence(n):
+    return round((n * (n + 1)) / 2)
+n=5
+print(f'compute_boals: {compute_bowls(n)}')
 # endregion
 
 # 测试哪个solution运行速度更快
 from time import time  # Import the time function 导入时间函数
 
-def time_func(func, n):  # Define a function to measure execution time 定义测量函数运行时间的函数
+def time_func(func, n):  #定义函数：执行指定func并计算运行了多少秒
     print(f'Running {func.__name__} for n={n}')
 
     t0 = time()  # Record the start time 记录开始时间
@@ -63,8 +66,17 @@ def time_func(func, n):  # Define a function to measure execution time 定义测
 
     print(f'Result: {res}')  # Display the result 显示计算结果
     print(f'Elapsed time: {elapsed_time}')  # Display execution time 显示运行耗时
+    n = 998
+    n = 50000000
 
-    time_func(count_bowls, n)  # Measure the for/while function's runtime 测量循环函数的运行时间
-    time_func(count_pins, n)  # Measure the count_pins function's runtime 测量count_pins函数的运行时间
-    time_func(count_bowls_recurse, n)  # Measure recursive function runtime 测量递归函数的运行时间
-    time_func(count_bowls_sequence, n)  # Measure sequence function runtime 测量数学公式函数的运行时间
+    # print(f'count_bowls({n})={count_bowls(n)}')
+    # print(f'count_pins({n})={count_pins(n)}')
+    # print(f'count_bowls_recurse({n})={count_bowls_recurse(n)}')
+    # print(f'count_bowls_sequence({n})={count_bowls_sequence(n)}')
+
+    # time_func(round((n * (n + 1))/2), n)
+    # time_func(count_bowls(n), n)
+    time_func(count_bowls, n)
+    time_func(count_pins, n)
+    # time_func(count_bowls_recurse, n)
+    time_func(count_bowls_sequence, n)

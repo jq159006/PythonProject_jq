@@ -274,11 +274,4 @@ with open(my_file, 'a') as f:  # Open the file in append mode 以追加模式打
     f.write('Another line\n')
 # endregion
 
-# region homework1
-# endregion
-# region homework2
-# endregion
-
-
-
 

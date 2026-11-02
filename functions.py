@@ -1,37 +1,60 @@
-def sum_it(a: int, b: int) -> int:  # Define parameter and return type hints 定义参数及返回值的类型提示
+#region 1. functions & parameter
+def sum_it(a: int, b: int) -> int:
     return a + b
 
-print(sum_it(1.67, 32.53)) #虽然设置了整数，但是小数仍然可以运行
+print(sum_it(1.67, 32.53)) #虽然不是整数，但依然可以运行
 
-
-def sum_it_params(a: int = 5, b: int = 10):  # Set default parameter values 设置参数默认值
-    s_i = 35254
-    return a + b
+def sum_it_params(a=5, b=10): #如果没有说明ab的值，就默认a=5b=10
+    s_i = 35252 #为了说明函数里面创建的 s_i，函数外部不能直接使用。
+    summ = a +b
+    # return summ, - adding a comma turns the output into a tuple with an empty second element
+    return summ #return是把 summ 当前的值返回给函数调用者。无法带到外部
 
 print(sum_it_params(1.67))
 print(sum_it_params())
 print(sum_it_params(b=15))
+print('-'*60)
+# endregion
 
-print('-' * 60)
-
-
+#region 2.区分if/for/function
+# 2.1 if
 b = 4
 d = 0
-
 if b > 5:
     d = 10
 else:
     d = 5
-
-print(f'd={d}')  # Print d using an f-string 使用f-string输出d
-
-
+print(f'd={d}')
+# 2.2 for
 for i in range(10):
     bi = i * 10
+print(f'bi={bi}') #循环结束后，bi 保留最后一次赋值的结果。
+# 2.3 function
+res = sum_it_params(5, 10)
+print(f'res={res}') #函数内部的局部变量不是完全不能把值传出去，而是要通过 return 等方式明确传递。
+#print(f's_i={s_i}') - 报错，因为function会创建自己的local scope（局部作用域）
+# endregion
 
-print(f'bi={bi}')
+# region 3. nested function 嵌套函数
+def sum_and_multiply(a, b):
+    summ = a + b
 
-res = sum_it_params(5, 10)  # Pass two arguments to the function 向函数传入两个参数
-print(f'res={res}')
+    def multiply(a, b):
+    #    print(a, b, c, d)
+        b = 100
+        return a* b
+    #def multiply():
+    #    return a * b
+    #multi = multiply()
+#    multi = multiply(191, 141)
+    multi = multiply(a, b)
+    return summ, multi
 
-# print(f's_i={s_i}')  # Access a local variable outside the function 在函数外访问局部变量（会报错）
+result = sum_and_multiply(5, 10)
+print(f'result={result}')
+print(f'type(result)={type(result)}')
+
+sum_ab, multi_ab = sum_and_multiply(5, 10)
+print(f'sum_ab={sum_ab}, multi_ab={multi_ab}')
+
+#print(sum_and_multiply.multiply(1, 3))
